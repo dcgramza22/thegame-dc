@@ -64,12 +64,14 @@ img {
 
 .mentor-section {
     padding: 10px;
-    min-width: 400px;
+    min-width: 200px;
+    max-width: 300px;
     border-color: darkgrey;
     border-width: 1px;
     border-radius: 5px;
     border-style: solid;
-    min-height: 300px;
+    min-height: 200px;
+    max-height: 300px;
     text-align: center;
     margin: 10px;
 }
@@ -153,4 +155,15 @@ table, th, td {
     width: 100%;
     max-width: 400px;
     margin: 0 auto;
+}
+
+.add-task {
+    margin: 0 auto;
+    min-width: 300px;
+    max-width: 600px;
+    width: 60%;
+}
+
+.complete {
+    background-color: #90EE90;
 }

@@ -7,36 +7,53 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="{{ url_for('static', filename='site.css') }}">
         <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-        <title>View Mentors</title>
+        <title>View Tasks</title>
     </head>
     <body>
         <div class="view-mentors-wrapper">
             <p class="text-center"><span class="title"><u>The Game</u></span></p>
             <hr />
+            <p class="text-center"><span class="title"><u>Incomplete</u></span></p>
+            <div class="mentor-container">
+                <div class="view-mentors-wrapper">
+                {% for task in tasks %}
+                    {% if not task.complete %}
+                        <div class="mentor-section">
+                            <p class="text-center"><span class="title">{{ task.title }}</span></p>
+                            <hr/>
+                            <p>{{ task.description }}</p>
+                            <hr />
+                            <div>
+                                <a class="btn btn-sm btn-success" href="{{ url_for('complete_task', id=task.id) }}">Complete</a>
+                                <a class="btn btn-danger btn-sm" href="{{ url_for('delete_task', id=task.id)}}">Remove Task</a>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                </div>
+            </div>
+            <hr />
+            <p class="text-center"><span class="title"><u>Complete</u></span></p>
             <div class="mentor-container">
                 {% for task in tasks %}
-                    {% if not mentor.complete %}
+                    {% if task.complete %}
                         <div class="mentor-section">
                             <p class="text-center"><span class="title">{{ task.title }}</span></p>
                             <hr/>
-                            <p><span class="title">{{ task.description }}}</p>
+                            <p>{{ task.description }}</p>
                             <hr />
-                             <a class="btn btn-success" href="{{ url_for('complete_task', mid=mentor.id) }}">Complete</a>
+                            <div>
+                                <a class="btn btn-primary btn-sm" href="{{ url_for('incomplete_task', id=task.id) }}">Do again</a>
+                                <a class="btn btn-danger btn-sm" href="{{ url_for('delete_task', id=task.id)}}">Remove Task</a>
+                            </div>
                         </div>
+                    {% endif %}
                 {% endfor %}
-                {% for task in tasks %}
-                    {% if mentor.complete %}
-                        <div class="mentor-section">
-                            <p class="text-center"><span class="title">{{ task.title }}</span></p>
-                            <hr/>
-                            <p><span class="title">{{ task.description }}}</p>
-                            <hr />
-                             <a class="btn btn-danger" href="{{ url_for('incomplete_task', mid=mentor.id) }}">Do again</a>
-                        </div>
-                {% endfor %}
+                </div>
             </div>
         </div>
-        <div class="form-wrapper">
+        <hr />
+        <div class="form-wrapper add-task">
             <p><span class="title">Add Task</span></p>
             <hr/>
             <form action="/add_task" method="post">
@@ -48,6 +65,7 @@
                     <label for="description">Description</label>
                     <input type="text" class="form-control" id="description" name="description" placeholder="Description">
                 </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
     </body>
