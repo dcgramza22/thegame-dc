@@ -15,7 +15,6 @@
             <hr />
             <p class="text-center"><span class="title"><u>Incomplete</u></span></p>
             <div class="mentor-container">
-                <div class="view-mentors-wrapper">
                 {% for task in tasks %}
                     {% if not task.complete %}
                         <div class="mentor-section">
@@ -30,7 +29,6 @@
                         </div>
                     {% endif %}
                 {% endfor %}
-                </div>
             </div>
             <hr />
             <p class="text-center"><span class="title"><u>Complete</u></span></p>
