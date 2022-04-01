@@ -53,7 +53,7 @@ def complete_task(id):
     except Exception as e:
         logging.exception(e)
         traceback.print_exc()
-return redirect(url_for('admin'))
+        return redirect(url_for('admin'))
 
 
 @app.route('/incomplete_task/<id>', methods=['GET'])
@@ -66,7 +66,7 @@ def incomplete_task(id):
     except Exception as e:
         logging.exception(e)
         traceback.print_exc()
-return redirect(url_for('admin'))
+        return redirect(url_for('admin'))
 
 @app.route('/add_task', methods=['POST'])
 def add_task():
@@ -78,7 +78,7 @@ def add_task():
     except Exception as e:
         logging.exception(e)
         traceback.print_exc()
-return redirect(url_for('admin'))
+        return redirect(url_for('admin'))
 
 @app.route('/delete_task/<id>', methods=['GET'])
 def delete_task(id):
