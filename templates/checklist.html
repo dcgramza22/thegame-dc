@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ url_for('static', filename='site.css') }}">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+        <title>View Mentors</title>
+    </head>
+    <body>
+        <div class="view-mentors-wrapper">
+            <p class="text-center"><span class="title"><u>The Game</u></span></p>
+            <hr />
+            <div class="mentor-container">
+                {% for task in tasks %}
+                    {% if not mentor.complete %}
+                        <div class="mentor-section">
+                            <p class="text-center"><span class="title">{{ task.title }}</span></p>
+                            <hr/>
+                            <p><span class="title">{{ task.description }}}</p>
+                            <hr />
+                             <a class="btn btn-success" href="{{ url_for('complete_task', mid=mentor.id) }}">Complete</a>
+                        </div>
+                {% endfor %}
+                {% for task in tasks %}
+                    {% if mentor.complete %}
+                        <div class="mentor-section">
+                            <p class="text-center"><span class="title">{{ task.title }}</span></p>
+                            <hr/>
+                            <p><span class="title">{{ task.description }}}</p>
+                            <hr />
+                             <a class="btn btn-danger" href="{{ url_for('incomplete_task', mid=mentor.id) }}">Do again</a>
+                        </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="form-wrapper">
+            <p><span class="title">Add Task</span></p>
+            <hr/>
+            <form action="/add_task" method="post">
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Title">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <input type="text" class="form-control" id="description" name="description" placeholder="Description">
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
