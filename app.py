@@ -7,7 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://hapydcojjcnwde:7f512ce444bfda3588d81261a25b4299705f6f81cad27803b07d3a13c0a900b5@ec2-52-3-60-53.compute-1.amazonaws.com:5432/d1t0317bcb2r1e'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://hapydcojjcnwde:7f512ce444bfda3588d81261a25b4299705f6f81cad27803b07d3a13c0a900b5@ec2-52-3-60-53.compute-1.amazonaws.com:5432/d1t0317bcb2r1e'
 app.secret_key = os.getenv('SECRET_KEY', default='8648d22e542ca1188d20de52b52c6d33d209704f508f21fc')
 
 db = SQLAlchemy(app)
