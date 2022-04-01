@@ -23,7 +23,7 @@
                             <p>{{ task.description }}</p>
                             <hr />
                             <div>
-                                <a class="btn btn-sm btn-success" href="{{ url_for('complete_task', id=task.id) }}">Complete</a>
+                                <a class="btn btn-sm btn-primary" href="{{ url_for('complete_task', id=task.id) }}">Complete</a>
                                 <a class="btn btn-danger btn-sm" href="{{ url_for('delete_task', id=task.id)}}">Remove Task</a>
                             </div>
                         </div>
